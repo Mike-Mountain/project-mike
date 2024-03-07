@@ -1,0 +1,9 @@
+{
+  "name": "resume-resume-feature",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/resume/resume-feature/src",
+  "prefix": "resume-feature",
+  "tags": ["scope:resume", "type:feature"],
+  "projectType": "library",
+  "targets": {}
+}

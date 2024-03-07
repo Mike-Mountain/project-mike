@@ -14,7 +14,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@project-mike/resume/resume-data-access": [
+        "libs/resume/resume-data-access/src/index.ts"
+      ],
+      "@project-mike/resume/resume-feature": [
+        "libs/resume/resume-feature/src/index.ts"
+      ],
+      "@project-mike/resume/resume-ui": ["libs/resume/resume-ui/src/index.ts"],
+      "@project-mike/resume/resume-util": [
+        "libs/resume/resume-util/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

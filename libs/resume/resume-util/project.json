@@ -1,0 +1,9 @@
+{
+  "name": "resume-resume-util",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/resume/resume-util/src",
+  "prefix": "resume-util",
+  "tags": ["scope:resume", "type:util"],
+  "projectType": "library",
+  "targets": {}
+}

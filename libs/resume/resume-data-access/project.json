@@ -1,0 +1,9 @@
+{
+  "name": "resume-resume-data-access",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/resume/resume-data-access/src",
+  "prefix": "resume-data-access",
+  "tags": ["scope:resume", "type:data-access"],
+  "projectType": "library",
+  "targets": {}
+}

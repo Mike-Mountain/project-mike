@@ -2,7 +2,13 @@
   "name": "@project-mike/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "create-data-access-lib": "nx g @nx/angular:lib resume-data-access --tags=scope:resume,type:data-access --prefix=resume-data-access --directory=libs/resume --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib resume-feature --tags=scope:resume,type:feature --prefix=resume-feature --directory=libs/resume --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib resume-ui --tags=scope:resume,type:ui --prefix=resume-ui --directory=libs/resume --standalone",
+    "create-util-lib": "nx g @nx/angular:lib resume-util --tags=scope:resume,type:util --prefix=resume-util --directory=libs/resume --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=resume && npm run create-feature-lib --scope=resume && npm run create-ui-lib --scope=resume && npm run create-util-lib --scope=resume --directory=libs/resume --standalone"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~17.1.0",
