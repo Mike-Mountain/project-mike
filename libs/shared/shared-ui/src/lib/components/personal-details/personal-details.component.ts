@@ -4,7 +4,7 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'resume-ui-personal-details',
+  selector: 'shared-ui-personal-details',
   standalone: true,
   imports: [CommonModule, MatCard, MatCardContent, MatIcon],
   templateUrl: './personal-details.component.html',

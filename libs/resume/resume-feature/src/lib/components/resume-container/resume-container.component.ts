@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import {
-  HobbiesComponent, PersonalDetailsComponent,
+  HobbiesComponent,
   ProjectCardComponent,
   SkillsComponent,
   WorkHistoryCardComponent
@@ -16,6 +16,7 @@ import {
   skills,
   workHistory
 } from '@project-mike/resume/resume-data-access';
+import { PersonalDetailsComponent } from '@project-mike/shared/shared-ui';
 
 @Component({
   selector: 'resume-feature-resume-container',

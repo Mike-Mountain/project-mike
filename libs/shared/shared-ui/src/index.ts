@@ -1,1 +1,1 @@
-export * from './lib/shared-shared-ui/shared-shared-ui.component';
+export * from './lib/components/personal-details/personal-details.component';
