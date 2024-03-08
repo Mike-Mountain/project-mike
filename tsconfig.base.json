@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@project-mike/core/core-ui": ["libs/core/core-ui/src/index.ts"],
       "@project-mike/resume/resume-data-access": [
         "libs/resume/resume-data-access/src/index.ts"
       ],

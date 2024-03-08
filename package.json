@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "create-data-access-lib": "nx g @nx/angular:lib resume-data-access --tags=scope:resume,type:data-access --prefix=resume-data-access --directory=libs/resume --standalone",
-    "create-feature-lib": "nx g @nx/angular:lib resume-feature --tags=scope:resume,type:feature --prefix=resume-feature --directory=libs/resume --standalone",
-    "create-ui-lib": "nx g @nx/angular:lib resume-ui --tags=scope:resume,type:ui --prefix=resume-ui --directory=libs/resume --standalone",
-    "create-util-lib": "nx g @nx/angular:lib resume-util --tags=scope:resume,type:util --prefix=resume-util --directory=libs/resume --standalone",
-    "create-scoped-libs": "npm run create-data-access-lib --scope=resume && npm run create-feature-lib --scope=resume && npm run create-ui-lib --scope=resume && npm run create-util-lib --scope=resume --directory=libs/resume --standalone"
+    "create-data-access-lib": "nx g @nx/angular:lib core-data-access --tags=scope:core,type:data-access --prefix=core-data-access --directory=libs/core --standalone",
+    "create-feature-lib": "nx g @nx/angular:lib core-feature --tags=scope:core,type:feature --prefix=core-feature --directory=libs/core --standalone",
+    "create-ui-lib": "nx g @nx/angular:lib core-ui --tags=scope:core,type:ui --prefix=core-ui --directory=libs/core --standalone",
+    "create-util-lib": "nx g @nx/angular:lib core-util --tags=scope:core,type:util --prefix=core-util --directory=libs/core --standalone",
+    "create-scoped-libs": "npm run create-data-access-lib --scope=core && npm run create-feature-lib --scope=core && npm run create-ui-lib --scope=core && npm run create-util-lib --scope=core --directory=libs/core --standalone"
   },
   "private": true,
   "dependencies": {

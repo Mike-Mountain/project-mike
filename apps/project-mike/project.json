@@ -18,7 +18,12 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/project-mike/src/favicon.ico",
-          "apps/project-mike/src/assets"
+          "apps/project-mike/src/assets",
+          {
+            "glob": "**/*",
+            "input": "libs/core/assets",
+            "output": "/assets/"
+          }
         ],
         "styles": ["apps/project-mike/src/styles.scss"],
         "scripts": []

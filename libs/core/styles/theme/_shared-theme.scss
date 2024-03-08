@@ -34,10 +34,9 @@ $default-dark-theme: mat.define-dark-theme((
   )
 ));
 
-.default-light {
-  @include mat.all-component-themes($default-light-theme);
-}
+
+@include mat.all-component-themes($default-light-theme);
 
 .default-dark {
-  @include mat.all-component-themes($default-dark-theme);
+  @include mat.all-component-colors($default-dark-theme);
 }

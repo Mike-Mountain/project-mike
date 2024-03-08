@@ -1,0 +1,76 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: "image details contact";
+}
+
+.photo {
+  height: 9rem;
+  width: 9rem;
+  border-radius: 50%;
+  border: 1px solid white;
+  grid-area: image;
+}
+
+.introduction {
+  grid-area: details;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-left: 1px solid white;
+  padding-left: .5rem;
+  grid-area: contact;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1px solid white;
+  margin-top: 1rem;
+  padding-top: .75rem;
+}
+
+@media (max-width: 1000px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "image contact"
+      "details contact";
+  }
+
+  .photo {
+    margin: auto
+  }
+
+  .introduction {
+    text-align: center;
+    ul {
+      text-align: justify;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "details"
+      "contact";
+  }
+
+  .contact {
+    border-left: none;
+    border-top: 1px solid white;
+    margin-top: 1rem;
+    padding-top: .75rem;
+  }
+}

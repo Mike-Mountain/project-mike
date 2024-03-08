@@ -1,1 +1,1 @@
-export * from './lib/resume-resume-feature/resume-resume-feature.component';
+export * from './lib/components/resume-container/resume-container.component';

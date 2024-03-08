@@ -1,0 +1,9 @@
+{
+  "name": "core-core-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/core/core-ui/src",
+  "prefix": "core-ui",
+  "tags": ["scope:core", "type:ui"],
+  "projectType": "library",
+  "targets": {}
+}
