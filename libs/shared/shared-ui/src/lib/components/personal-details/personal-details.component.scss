@@ -4,9 +4,25 @@
   grid-template-areas: "image details contact";
 }
 
+.home-grid-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas:
+    "image contact"
+    "details contact";
+}
+
 .photo {
   height: 9rem;
   width: 9rem;
+  border-radius: 50%;
+  border: 1px solid white;
+  grid-area: image;
+}
+
+.photo-lg {
+  height: 15rem;
+  width: 15rem;
   border-radius: 50%;
   border: 1px solid white;
   grid-area: image;
