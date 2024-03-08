@@ -25,6 +25,16 @@
       "@project-mike/resume/resume-ui": ["libs/resume/resume-ui/src/index.ts"],
       "@project-mike/resume/resume-util": [
         "libs/resume/resume-util/src/index.ts"
+      ],
+      "@project-mike/shared/shared-data-access": [
+        "libs/shared/shared-data-access/src/index.ts"
+      ],
+      "@project-mike/shared/shared-feature": [
+        "libs/shared/shared-feature/src/index.ts"
+      ],
+      "@project-mike/shared/shared-ui": ["libs/shared/shared-ui/src/index.ts"],
+      "@project-mike/shared/shared-util": [
+        "libs/shared/shared-util/src/index.ts"
       ]
     }
   },

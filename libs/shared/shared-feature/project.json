@@ -1,0 +1,9 @@
+{
+  "name": "shared-shared-feature",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/shared-feature/src",
+  "prefix": "shared-feature",
+  "tags": ["scope:shared", "type:feature"],
+  "projectType": "library",
+  "targets": {}
+}
