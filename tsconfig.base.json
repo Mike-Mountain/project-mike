@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@project-mike/code-master/code-master-data-access": [
+        "libs/code-master/code-master-data-access/src/index.ts"
+      ],
+      "@project-mike/code-master/code-master-feature": [
+        "libs/code-master/code-master-feature/src/index.ts"
+      ],
+      "@project-mike/code-master/code-master-ui": [
+        "libs/code-master/code-master-ui/src/index.ts"
+      ],
+      "@project-mike/code-master/code-master-util": [
+        "libs/code-master/code-master-util/src/index.ts"
+      ],
       "@project-mike/core/core-ui": ["libs/core/core-ui/src/index.ts"],
       "@project-mike/resume/resume-data-access": [
         "libs/resume/resume-data-access/src/index.ts"

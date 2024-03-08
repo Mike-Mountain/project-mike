@@ -1,0 +1,9 @@
+{
+  "name": "code-master-code-master-data-access",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/code-master/code-master-data-access/src",
+  "prefix": "code-master-data-access",
+  "tags": ["scope:code-master", "type:data-access"],
+  "projectType": "library",
+  "targets": {}
+}

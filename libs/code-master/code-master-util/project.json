@@ -1,0 +1,9 @@
+{
+  "name": "code-master-code-master-util",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/code-master/code-master-util/src",
+  "prefix": "code-master-util",
+  "tags": ["scope:code-master", "type:util"],
+  "projectType": "library",
+  "targets": {}
+}

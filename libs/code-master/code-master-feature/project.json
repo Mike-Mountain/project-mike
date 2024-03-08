@@ -1,0 +1,9 @@
+{
+  "name": "code-master-code-master-feature",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/code-master/code-master-feature/src",
+  "prefix": "code-master-feature",
+  "tags": ["scope:code-master", "type:feature"],
+  "projectType": "library",
+  "targets": {}
+}
