@@ -19,6 +19,10 @@ export class CmGameService {
     return this.turnsSrc.asObservable();
   }
 
+  public setTurns(turns: CsmGameTurn[]) {
+    this.turnsSrc.next(turns);
+  }
+
   public getWinState(): Observable<WinState> {
     return this.winStateSrc.asObservable();
   }

@@ -1,27 +1,61 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CmGameService, CsmGameTurn, TurnState, WinState } from '@project-mike/code-master/code-master-data-access';
+import {
+  CmGameService,
+  Color,
+  CsmGameTurn,
+  TurnState,
+  WinState
+} from '@project-mike/code-master/code-master-data-access';
+import { MatIcon } from '@angular/material/icon';
+import { ReplaySubject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'code-master-ui-game-board',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIcon],
   templateUrl: './game-board.component.html',
   styleUrl: './game-board.component.scss'
 })
-export class GameBoardComponent implements OnInit {
-  @Input() public colors: string[] = [];
-  @Input() public masterColors: string[] = [];
-  @Input() public state = WinState.InProgress;
+export class GameBoardComponent implements OnInit, OnDestroy {
+  @Input() colors: string[] = [];
+  @Input() masterColors: string[] = [];
+  @Input() state = WinState.InProgress;
 
   public turns: CsmGameTurn[] = [];
   public turnState = TurnState;
   public winState = WinState;
 
+  private destroyed$ = new ReplaySubject<boolean>(1);
+
   constructor(private gameService: CmGameService) {
   }
 
   ngOnInit() {
-    this.gameService.getTurns().subscribe(turns => this.turns = turns);
+    this.gameService.getTurns()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(turns => {
+        this.turns = turns;
+        console.log(this.turns);
+      });
+  }
+
+  toggleSelected(turnState: TurnState, color: Color, selectedColor?: string) {
+    this.gameService.toggleSelectedColor(turnState, color, selectedColor);
+  }
+
+  completeTurn(turn: CsmGameTurn, idx: number) {
+    if (turn.turnState === TurnState.InProgress && this.gameService.canSelectColor(this.turns)) {
+      turn.turnState = TurnState.Complete;
+      if (idx > 0) {
+        this.turns[idx - 1].turnState = TurnState.InProgress;
+      }
+      turn.pins = this.gameService.completeTurn(turn, idx);
+    }
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 }

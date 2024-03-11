@@ -5,6 +5,11 @@
 @use 'palettes/default/default-primary';
 @use 'palettes/default/default-accent';
 @use 'palettes/default/default-warn';
+
+@use 'palettes/code-master/cm-primary';
+@use 'palettes/code-master/cm-accent';
+@use 'palettes/code-master/cm-warn';
+
 @import "../partials/index";
 @import "../utils/index";
 @import "../variables/index";
@@ -15,6 +20,10 @@
 
 $default-primary: mat.define-palette(default-primary.$default-primary);
 $default-accent: mat.define-palette(default-accent.$default-accent);
+
+$cm-primary: mat.define-palette(cm-primary.$cm-primary);
+$cm-accent: mat.define-palette(cm-accent.$cm-accent);
+
 $shared-warn: mat.define-palette(default-warn.$default-warn);
 
 // Create the theme object for each theme:
@@ -34,9 +43,22 @@ $default-dark-theme: mat.define-dark-theme((
   )
 ));
 
+$code-master-theme: mat.define-dark-theme((
+  color: (
+    primary: $cm-primary,
+    accent: $cm-accent,
+    warn: $shared-warn,
+  )
+));
+
 
 @include mat.all-component-themes($default-light-theme);
 
 .default-dark {
   @include mat.all-component-colors($default-dark-theme);
+}
+
+.code-master {
+  @include mat.all-component-colors($code-master-theme);
+  @import "../partials/code-master-specific";
 }

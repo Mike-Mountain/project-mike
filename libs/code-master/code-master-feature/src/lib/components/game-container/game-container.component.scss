@@ -31,9 +31,12 @@
 }
 
 
-@media screen and (min-width: 910px) {
-  .computer-colors {
-    width: 55%;
-    margin: 0 auto;
+@media (min-width: 910px) {
+  .game-container {
+    width: 50%;
+    height: 90%;
+    margin: .75rem auto;
+    border-radius: 8px;
+    border: 2px solid var(--accent);
   }
 }
