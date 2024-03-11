@@ -1,8 +1,8 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/home">Home</a>
@@ -21,7 +21,19 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
       }
-      <span>Mike Mountain</span>
+      <div class="w-100 flex-between">
+        <span>{{ title$ | async }}</span>
+        @if ((path$ | async) === '/code-master') {
+          <div class="w-10 flex-between">
+            <button (click)="openSettings()" mat-icon-button>
+              <mat-icon>settings</mat-icon>
+            </button>
+            <button (click)="openInstructions()" mat-icon-button>
+              <mat-icon>help</mat-icon>
+            </button>
+          </div>
+        }
+      </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

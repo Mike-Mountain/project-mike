@@ -36,7 +36,6 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe(turns => {
         this.turns = turns;
-        console.log(this.turns);
       });
   }
 

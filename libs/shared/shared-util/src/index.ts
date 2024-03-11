@@ -1,1 +1,1 @@
-export * from './lib/shared-shared-util/shared-shared-util.component';
+export * from '././lib/services/toolbar/toolbar.service';

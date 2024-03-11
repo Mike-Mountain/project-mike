@@ -1,14 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe, Location } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet, UrlSegment } from '@angular/router';
+import { ToolbarService } from '@project-mike/shared/shared-util';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'core-ui-layout',
@@ -23,15 +25,41 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     MatIconModule,
     AsyncPipe,
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    MatMenuTrigger,
+    JsonPipe
   ]
 })
 export class LayoutComponent {
-  private breakpointObserver = inject(BreakpointObserver);
+  public isHandset$: Observable<boolean>;
+  public title$: Observable<string>;
+  public path$: Observable<string>;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  constructor(private toolbarService: ToolbarService,
+              private breakpointObserver: BreakpointObserver,
+              private router: Router) {
+    this.path$ = this.router.events.pipe(
+      map((event) => {
+        if (event instanceof NavigationEnd) {
+          return event.url
+        } else {
+          return ''
+        }
+      })
+    )
+    this.title$ = this.toolbarService.getTitle();
+    this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
+      .pipe(
+        map(result => result.matches),
+        shareReplay()
+      );
+  }
+
+  public openInstructions() {
+    this.toolbarService.showInstructions();
+  }
+
+  public openSettings() {
+    this.toolbarService.showSettings();
+  }
 }

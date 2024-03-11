@@ -11,6 +11,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ReplaySubject, switchMap, takeUntil } from 'rxjs';
 import { MatButton } from '@angular/material/button';
+import { ToolbarService } from '@project-mike/shared/shared-util';
 
 @Component({
   selector: 'code-master-feature-game-container',
@@ -36,6 +37,7 @@ export class GameContainerComponent implements OnInit, AfterViewInit, OnDestroy 
     private gameService: CmGameService,
     private cmSettingsService: CmSettingsService,
     private dialog: MatDialog,
+    private toolbarService: ToolbarService,
     @Inject(DOCUMENT) private document: Document
   ) {
   }
@@ -44,6 +46,8 @@ export class GameContainerComponent implements OnInit, AfterViewInit, OnDestroy 
     // Update theme
     this.document.body.classList.remove('default-dark');
     this.document.body.classList.add('code-master');
+
+    this.toolbarService.updateTitle('Code Master');
 
     this.cmSettingsService.getSettings()
       .pipe(
