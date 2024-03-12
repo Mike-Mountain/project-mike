@@ -1,0 +1,9 @@
+{
+  "name": "life-tracker-life-tracker-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/life-tracker/life-tracker-ui/src",
+  "prefix": "life-tracker-ui",
+  "tags": ["scope:life-tracker", "type:ui"],
+  "projectType": "library",
+  "targets": {}
+}

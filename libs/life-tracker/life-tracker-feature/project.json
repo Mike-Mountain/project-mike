@@ -1,0 +1,9 @@
+{
+  "name": "life-tracker-life-tracker-feature",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/life-tracker/life-tracker-feature/src",
+  "prefix": "life-tracker-feature",
+  "tags": ["scope:life-tracker", "type:feature"],
+  "projectType": "library",
+  "targets": {}
+}
