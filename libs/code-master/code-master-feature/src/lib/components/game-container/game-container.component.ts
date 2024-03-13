@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, Inject, OnDestroy, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  inject,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { GameBoardComponent } from '@project-mike/code-master/code-master-ui';
 import {
@@ -30,16 +40,17 @@ export class GameContainerComponent implements OnInit, AfterViewInit, OnDestroy 
   public state: WinState = WinState.InProgress;
   public WinsState = WinState;
 
+
   private turns = 0;
+
+  private gameService = inject(CmGameService);
+  private cmSettingsService = inject(CmSettingsService);
+  private dialog = inject(MatDialog);
+  private toolbarService = inject(ToolbarService);
+
   private destroyed$ = new ReplaySubject<boolean>(1);
 
-  constructor(
-    private gameService: CmGameService,
-    private cmSettingsService: CmSettingsService,
-    private dialog: MatDialog,
-    private toolbarService: ToolbarService,
-    @Inject(DOCUMENT) private document: Document
-  ) {
+  constructor(@Inject(DOCUMENT) private document: Document) {
   }
 
   ngOnInit(): void {

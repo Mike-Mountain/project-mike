@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { PersonalDetailsComponent } from '@project-mike/shared/shared-ui';
@@ -12,10 +12,12 @@ import { ToolbarService } from '@project-mike/shared/shared-util';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public personalDetails: PersonalDetails = homeDetails;
 
-  constructor(private toolbarService: ToolbarService) {
+  private toolbarService = inject(ToolbarService);
+
+  ngOnInit() {
     this.toolbarService.updateTitle('Home')
   }
 }

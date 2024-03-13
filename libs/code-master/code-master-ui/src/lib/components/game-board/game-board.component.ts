@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   CmGameService,
@@ -26,10 +26,8 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   public turnState = TurnState;
   public winState = WinState;
 
+  private gameService = inject(CmGameService);
   private destroyed$ = new ReplaySubject<boolean>(1);
-
-  constructor(private gameService: CmGameService) {
-  }
 
   ngOnInit() {
     this.gameService.getTurns()

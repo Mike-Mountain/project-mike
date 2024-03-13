@@ -3,5 +3,5 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LifeTrackerService {
+export class AuthService {
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe, JsonPipe, Location } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -30,14 +30,16 @@ import { MatMenuTrigger } from '@angular/material/menu';
     JsonPipe
   ]
 })
-export class LayoutComponent {
-  public isHandset$: Observable<boolean>;
-  public title$: Observable<string>;
-  public path$: Observable<string>;
+export class LayoutComponent implements OnInit {
+  public isHandset$: Observable<boolean> | undefined;
+  public title$: Observable<string> | undefined;
+  public path$: Observable<string> | undefined;
 
-  constructor(private toolbarService: ToolbarService,
-              private breakpointObserver: BreakpointObserver,
-              private router: Router) {
+  private toolbarService = inject(ToolbarService);
+  private breakpointObserver = inject(BreakpointObserver);
+  private router = inject(Router);
+
+  ngOnInit() {
     this.path$ = this.router.events.pipe(
       map((event) => {
         if (event instanceof NavigationEnd) {

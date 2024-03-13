@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, inject, Input, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatChip } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,8 +16,7 @@ export class ProjectCardComponent {
   @Input() project: SideProject | undefined;
   selectedImage: string | undefined;
 
-  constructor(private dialog: MatDialog) {
-  }
+  private dialog = inject(MatDialog);
 
   public openImageModal(imagePath: string, modal: TemplateRef<any>) {
     this.selectedImage = imagePath;

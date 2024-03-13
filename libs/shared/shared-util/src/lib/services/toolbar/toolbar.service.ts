@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CmSettingsService } from '@project-mike/code-master/code-master-data-access';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -11,9 +11,8 @@ export class ToolbarService {
 
   private titleSrc = new BehaviorSubject<string>('Project Mike');
 
-  constructor(private matDialog: MatDialog,
-              private settingsService: CmSettingsService) {
-  }
+  private matDialog = inject(MatDialog);
+  private settingsService = inject(CmSettingsService);
 
   updateTitle(title: string) {
     this.titleSrc.next(title);

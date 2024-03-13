@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   CodeMasterSettings,
@@ -33,9 +33,10 @@ export class SettingsComponent implements OnInit {
     'peach'
   ];
 
-  constructor(private formBuilder: FormBuilder,
-              public dialogRef: MatDialogRef<SettingsComponent>,
-              @Inject(MAT_DIALOG_DATA) private data: any) {
+  private formBuilder = inject(FormBuilder);
+  public dialogRef = inject(MatDialogRef<SettingsComponent>);
+
+  constructor(@Inject(MAT_DIALOG_DATA) private data: any) {
   }
 
   ngOnInit() {

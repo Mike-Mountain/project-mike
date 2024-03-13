@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import {
@@ -27,7 +27,7 @@ import { ToolbarService } from '@project-mike/shared/shared-util';
   templateUrl: './resume-container.component.html',
   styleUrl: './resume-container.component.scss'
 })
-export class ResumeContainerComponent {
+export class ResumeContainerComponent implements OnInit {
   public personalDetails: PersonalDetails = resumePersonalDetails;
   public workHistory: History[] = workHistory;
   public skills: Skill[] = skills;
@@ -35,7 +35,9 @@ export class ResumeContainerComponent {
   public educationHistory: History[] = educationHistory;
   public sideProjects: SideProject[] = sideProjects;
 
-  constructor(private toolbarService: ToolbarService) {
-    toolbarService.updateTitle('Curriculum Vitae')
+  private toolbarService = inject(ToolbarService);
+
+  ngOnInit(): void {
+    this.toolbarService.updateTitle('Curriculum Vitae');
   }
 }
