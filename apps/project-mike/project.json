@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/project-mike",
         "index": "apps/project-mike/src/index.html",
         "browser": "apps/project-mike/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/project-mike/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -25,7 +29,9 @@
             "output": "/assets/"
           }
         ],
-        "styles": ["apps/project-mike/src/styles.scss"],
+        "styles": [
+          "apps/project-mike/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -76,6 +82,23 @@
         "buildTarget": "project-mike:build",
         "staticFilePath": "dist/apps/project-mike/browser"
       }
+    },
+    "deploy": {
+      "executor": "@angular/fire:deploy",
+      "options": {
+        "version": 2
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "project-mike:build:production",
+          "serveTarget": "project-mike:serve:production"
+        },
+        "development": {
+          "buildTarget": "project-mike:build:development",
+          "serveTarget": "project-mike:serve:development"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }
