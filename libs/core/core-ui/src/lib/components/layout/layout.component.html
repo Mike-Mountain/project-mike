@@ -35,6 +35,15 @@
               </button>
             </div>
           }
+
+          <div class="flex-end">
+            @if (!authService.isLoggedIn()) {
+              <button mat-raised-button color="accent" (click)="openAuthDialog('signUp')">Sign Up</button>
+              <button class="ml-2" mat-stroked-button color="accent" (click)="openAuthDialog('signIn')">Sign In</button>
+            } @else {
+              <button mat-raised-button color="accent" (click)="logout()">Sign Out</button>
+            }
+          </div>
         </div>
       </mat-toolbar>
       <router-outlet></router-outlet>
