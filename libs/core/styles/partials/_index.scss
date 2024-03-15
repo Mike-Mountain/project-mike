@@ -11,3 +11,18 @@
 @import "text";
 @import 'mat-form-field';
 @import "code-master";
+
+// Shame:
+
+.invisible-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.photo {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+}

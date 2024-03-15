@@ -1,1 +1,23 @@
-<p>tracker-home works!</p>
+<section class="life-tracker">
+  @if (user$ | async) {
+    <h1 class="text-center my-3">Welcome {{(user$ | async)?.email}}</h1>
+    <mat-card>
+      <mat-card-content>
+        <div class="flex-between">
+          <a class="invisible-button" (click)="createEntry('Happy')">
+            <img class="photo" src="assets/images/emojis/emoji-happy.png" alt="">
+          </a>
+          <a class="invisible-button" (click)="createEntry('Anxious')">
+            <img class="photo" src="assets/images/emojis/emoji-anxious.png" alt="">
+          </a>
+          <a class="invisible-button" (click)="createEntry('Sad')">
+            <img class="photo" src="assets/images/emojis/emoji-sad.png" alt="">
+          </a>
+        </div>
+        <h2 class="text-center mt-3">How are you feeling today?</h2>
+      </mat-card-content>
+    </mat-card>
+  } @else {
+    <h1 class="text-center">Please log in</h1>
+  }
+</section>

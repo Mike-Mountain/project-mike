@@ -13,6 +13,9 @@
     --primary: #{map-get($default-primary, 500)};
     --accent: #{map-get($default-accent, 500)};
     --warn: #{map-get($default-warn, 500)};
+    --primaryValues: #{$default-primary-values};
+    --accentValues: #{$default-accent-values};
+    --warnValues: #{$default-warn-values};
   }
 
   .code-master {
