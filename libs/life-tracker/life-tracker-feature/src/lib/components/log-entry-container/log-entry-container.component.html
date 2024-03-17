@@ -26,11 +26,11 @@
         <mat-card>
           <mat-card-content>
             @for (type of foodTypes; track type) {
-              <life-tracker-ui-food-entry
+              <life-tracker-ui-array-entry
                 [foodType]="type"
                 [formGroup]="logForm.controls['food'] | as:FormGroup"
                 (foodItem)="addItem($event, 'food')"
-              ></life-tracker-ui-food-entry>
+              ></life-tracker-ui-array-entry>
               <div class="w-100 flex-start flex-wrap mt-1 mb-3">
                 @for (item of (logForm.controls['food'] | as:FormGroup).controls[type].value; track item) {
                   <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>
@@ -44,11 +44,11 @@
       <div class="mt-3">
         <mat-card>
           <mat-card-content>
-            <life-tracker-ui-food-entry
+            <life-tracker-ui-array-entry
               [foodType]="'drinks'"
               [formGroup]="logForm"
               (foodItem)="addItem($event, 'drinks')"
-            ></life-tracker-ui-food-entry>
+            ></life-tracker-ui-array-entry>
             <div class="w-100 flex-start flex-wrap mt-1">
               @for (item of logForm.controls['drinks'].value; track item) {
                 <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>
@@ -61,11 +61,11 @@
       <div class="mt-3">
         <mat-card>
           <mat-card-content>
-            <life-tracker-ui-food-entry
+            <life-tracker-ui-array-entry
               [foodType]="'activities'"
               [formGroup]="logForm"
               (foodItem)="addItem($event, 'activities')"
-            ></life-tracker-ui-food-entry>
+            ></life-tracker-ui-array-entry>
             <div class="w-100 flex-start flex-wrap mt-1">
               @for (item of logForm.controls['activities'].value; track item) {
                 <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>
@@ -82,22 +82,22 @@
       <div class="mt-3">
         <mat-card>
           <mat-card-content>
-            <life-tracker-ui-food-entry
+            <life-tracker-ui-array-entry
               [foodType]="'urine'"
               [formGroup]="logForm.controls['bathroom'] | as:FormGroup"
               (foodItem)="addItem($event, 'bathroom')"
-            ></life-tracker-ui-food-entry>
+            ></life-tracker-ui-array-entry>
             <div class="w-100 flex-start flex-wrap mt-1">
               @for (item of (logForm.controls['bathroom'] | as:FormGroup).controls['urine'].value; track item) {
                 <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>
               }
             </div>
 
-            <life-tracker-ui-food-entry
+            <life-tracker-ui-array-entry
               [foodType]="'stool'"
               [formGroup]="logForm.controls['bathroom'] | as:FormGroup"
               (foodItem)="addItem($event, 'bathroom')"
-            ></life-tracker-ui-food-entry>
+            ></life-tracker-ui-array-entry>
             <div class="w-100 flex-start flex-wrap mt-1">
               @for (item of (logForm.controls['bathroom'] | as:FormGroup).controls['stool'].value; track item) {
                 <mat-chip color="accent" class="mr-2 my-1">{{ item }}</mat-chip>

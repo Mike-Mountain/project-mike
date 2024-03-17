@@ -1,6 +1,6 @@
 <section class="life-tracker">
   @if (user$ | async) {
-    <h1 class="text-center my-3">Welcome {{(user$ | async)?.email}}</h1>
+    <h1 class="text-center my-3">Welcome {{ (user$ | async)?.email }}</h1>
     <mat-card>
       <mat-card-content>
         <div class="flex-between">
@@ -17,6 +17,36 @@
         <h2 class="text-center mt-3">How are you feeling today?</h2>
       </mat-card-content>
     </mat-card>
+    <div class="mt-3">
+      <mat-card>
+        <mat-card-content>
+          <h2 class="text-center">Mood history</h2>
+          <div class="flex-around">
+            @if ((entries$ | async)!.length > 0) {
+              @for (entry of entries$ | async; track entry) {
+                <div class="entry-box">
+                  <div class="flex-start mb-1">
+                    <img class="entry-photo mr-1" alt="" [src]="'assets/images/emojis/emoji-' + entry['mood'] + '.png'">
+                    <h3 class="text-capitalize">{{ entry['mood'] }}</h3>
+                  </div>
+                  <div class="mb-2">
+                    @for (slider of entry['sliders']; track slider) {
+                      <div class="flex-between mb-1">
+                        <p class="text-capitalize">{{ slider.name | split:' ' }}</p>
+                        <p>{{ slider.value }}%</p>
+                      </div>
+                    }
+                  </div>
+                  <small>{{ entry['date'].toDate() | date : 'shortDate' }}</small>
+                </div>
+              }
+            } @else {
+              <h1 class="text-center">Add a journal entry above to get started!</h1>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   } @else {
     <h1 class="text-center">Please log in</h1>
   }

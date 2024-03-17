@@ -1,8 +1,8 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {
-  FoodEntryComponent,
+  ArrayEntryComponent,
   SelectMoodComponent,
   SlidersComponent, WorkoutComponent
 } from '@project-mike/life-tracker/life-tracker-ui';
@@ -17,17 +17,22 @@ import {MatButton, MatIconButton, MatMiniFabButton} from '@angular/material/butt
 import {MatIcon} from '@angular/material/icon';
 import {MatChip} from "@angular/material/chips";
 import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
+import {
+  LifeTrackerService
+} from "@project-mike/life-tracker/life-tracker-data-access";
 
 @Component({
   selector: 'life-tracker-feature-log-entry-container',
   standalone: true,
-  imports: [CommonModule, SelectMoodComponent, ReactiveFormsModule, MatCard, MatCardContent, MatSlider, MatSliderThumb, MatLabel, AsPipe, SlidersComponent, MatFormField, MatInput, MatIconButton, MatIcon, MatMiniFabButton, FoodEntryComponent, MatChip, MatRadioGroup, MatRadioButton, WorkoutComponent, MatButton],
+  imports: [CommonModule, SelectMoodComponent, ReactiveFormsModule, MatCard, MatCardContent, MatSlider, MatSliderThumb, MatLabel, AsPipe, SlidersComponent, MatFormField, MatInput, MatIconButton, MatIcon, MatMiniFabButton, MatChip, MatRadioGroup, MatRadioButton, WorkoutComponent, MatButton, ArrayEntryComponent],
   templateUrl: './log-entry-container.component.html',
   styleUrl: './log-entry-container.component.scss'
 })
 export class LogEntryContainerComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private formBuilder = inject(FormBuilder);
+  private trackerService = inject(LifeTrackerService);
 
   public logForm: FormGroup | undefined;
   public sliders: FormArray | undefined;
@@ -40,7 +45,6 @@ export class LogEntryContainerComponent implements OnInit, OnDestroy {
 
   private destroyed$ = new ReplaySubject<boolean>(1);
   protected readonly FormGroup = FormGroup;
-  protected readonly FormControl = FormControl;
 
   ngOnInit() {
     this.route.queryParams
@@ -79,7 +83,6 @@ export class LogEntryContainerComponent implements OnInit, OnDestroy {
       ])
     });
     this.sliders = this.logForm.controls['sliders'] as FormArray<FormGroup>;
-    console.log(this.sliders);
   }
 
   ngOnDestroy() {
@@ -90,12 +93,8 @@ export class LogEntryContainerComponent implements OnInit, OnDestroy {
   public selectMood(mood: string) {
     if (this.logForm) {
       const moodControl = this.logForm.controls['mood'];
-      moodControl.patchValue(mood);
+      moodControl.patchValue(mood.toLowerCase());
     }
-  }
-
-  public logFormVal() {
-    console.log(this.logForm?.value);
   }
 
   public addItem(data: { value: string, control: string }, controlName: string) {
@@ -107,17 +106,14 @@ export class LogEntryContainerComponent implements OnInit, OnDestroy {
         array = this.logForm.controls[controlName] as FormArray;
       }
       const control = new FormControl(data.value);
-
-      console.log(array);
       array.push(control);
-      this.logFormVal();
     }
   }
 
   public submitForm() {
     if (this.logForm) {
       const logEntry = this.logForm.value;
-      console.log(logEntry);
+      this.trackerService.addLogEntry(logEntry).subscribe(data => this.router.navigate(['/tracker']));
     }
   }
 }

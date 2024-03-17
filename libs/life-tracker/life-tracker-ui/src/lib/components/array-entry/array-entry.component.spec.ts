@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FoodEntryComponent } from './food-entry.component';
+import { ArrayEntryComponent } from './array-entry.component';
 
-describe('FoodEntryComponent', () => {
-  let component: FoodEntryComponent;
-  let fixture: ComponentFixture<FoodEntryComponent>;
+describe('ArrayEntryComponent', () => {
+  let component: ArrayEntryComponent;
+  let fixture: ComponentFixture<ArrayEntryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FoodEntryComponent],
+      imports: [ArrayEntryComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FoodEntryComponent);
+    fixture = TestBed.createComponent(ArrayEntryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
