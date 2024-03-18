@@ -29,7 +29,7 @@
       ],
       "@project-mike/core/core-ui": ["libs/core/core-ui/src/index.ts"],
       "@project-mike/life-tracker-routing": [
-        "libs/life-tracker/life-tracker-feature/src/lib"
+        "libs/life-tracker/life-tracker-feature/src/lib/tracker.routes"
       ],
       "@project-mike/life-tracker/life-tracker-data-access": [
         "libs/life-tracker/life-tracker-data-access/src/index.ts"

@@ -6,13 +6,13 @@ import { Router } from '@angular/router';
 import {LifeTrackerService} from "@project-mike/life-tracker/life-tracker-data-access";
 import {MatSlider, MatSliderThumb} from "@angular/material/slider";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {SplitPipe} from "@project-mike/shared/shared-util";
+import { LengthPipe, SplitPipe } from '@project-mike/shared/shared-util';
 
 
 @Component({
   selector: 'life-tracker-feature-tracker-home',
   standalone: true,
-  imports: [CommonModule, MatCard, MatCardContent, MatSlider, FormsModule, MatSliderThumb, ReactiveFormsModule, SplitPipe],
+  imports: [CommonModule, MatCard, MatCardContent, MatSlider, FormsModule, MatSliderThumb, ReactiveFormsModule, SplitPipe, LengthPipe],
   templateUrl: './tracker-home.component.html',
   styleUrl: './tracker-home.component.scss'
 })

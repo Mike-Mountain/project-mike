@@ -22,7 +22,7 @@
         <mat-card-content>
           <h2 class="text-center">Mood history</h2>
           <div class="flex-around">
-            @if ((entries$ | async)!.length > 0) {
+            @if ((entries$ | async | length) > 0) {
               @for (entry of entries$ | async; track entry) {
                 <div class="entry-box">
                   <div class="flex-start mb-1">
