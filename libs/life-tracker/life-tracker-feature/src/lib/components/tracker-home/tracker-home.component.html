@@ -17,6 +17,7 @@
         <h2 class="text-center mt-3">How are you feeling today?</h2>
       </mat-card-content>
     </mat-card>
+    <!--// MOOD HISTORY-->
     <div class="mt-3">
       <mat-card>
         <mat-card-content>
@@ -24,7 +25,7 @@
           <div class="flex-around">
             @if ((entries$ | async | length) > 0) {
               @for (entry of entries$ | async; track entry) {
-                <div class="entry-box">
+                <button class="invisible-button entry-box" (click)="expandEntry(entry, entryDetails)">
                   <div class="flex-start mb-1">
                     <img class="entry-photo mr-1" alt="" [src]="'assets/images/emojis/emoji-' + entry['mood'] + '.png'">
                     <h3 class="text-capitalize">{{ entry['mood'] }}</h3>
@@ -38,7 +39,7 @@
                     }
                   </div>
                   <small>{{ entry['date'].toDate() | date : 'shortDate' }}</small>
-                </div>
+                </button>
               }
             } @else {
               <h1 class="text-center">Add a journal entry above to get started!</h1>
@@ -51,3 +52,81 @@
     <h1 class="text-center">Please log in</h1>
   }
 </section>
+
+<ng-template #entryDetails>
+  @if (selectedEntry) {
+    <div class="p-3 flex-center flex-column">
+      <img class="photo mx-auto" alt="" [src]="'assets/images/emojis/emoji-' + selectedEntry['mood'] + '.png'">
+      <h3 class="text-capitalize text-center">{{ selectedEntry['mood'] }}</h3>
+      <hr class="w-75 mx-auto my-2">
+      <div class="w-100">
+        <p class="w-85 mx-auto">{{ selectedEntry['moodNotes'] }}</p>
+        <div class="flex-around mt-2">
+          @for (slider of selectedEntry['sliders']; track slider) {
+            <div class="flex-center flex-column box">
+              <h2>{{ slider.value }}%</h2>
+              <p>{{ slider.name | truncate: ' ' }}</p>
+            </div>
+          }
+        </div>
+      </div>
+      <hr class="w-75 mx-auto my-2">
+      <div class="w-100">
+        <shared-ui-list-display
+          [label]="'Breakfast'"
+          [selectedEntry]="selectedEntry['food'].breakfast"
+        ></shared-ui-list-display>
+        <div class="flex-between w-100 my-1">
+          <h3>Lunch</h3>
+          @if (selectedEntry['food'].lunch.length > 0) {
+            @for (food of selectedEntry['food'].lunch; track food) {
+              <mat-chip>{{ food }}</mat-chip>
+            }
+          } @else {
+            <mat-chip>None</mat-chip>
+          }
+        </div>
+        <div class="flex-between w-100 my-1">
+          <h3>Dinner</h3>
+          @if (selectedEntry['food'].dinner.length > 0) {
+            @for (food of selectedEntry['food'].dinner; track food) {
+              <mat-chip>{{ food }}</mat-chip>
+            }
+          } @else {
+            <mat-chip>None</mat-chip>
+          }
+        </div>
+        <div class="flex-between w-100 my-1">
+          <h3>Snacks</h3>
+          @if (selectedEntry['food'].snacks.length > 0) {
+            @for (food of selectedEntry['food'].snacks; track food) {
+              <mat-chip>{{ food }}</mat-chip>
+            }
+          } @else {
+            <mat-chip>None</mat-chip>
+          }
+        </div>
+        <div class="flex-between w-100 my-1">
+          <h3>Drinks</h3>
+          @if (selectedEntry['drinks'].length > 0) {
+            @for (drink of selectedEntry['drinks']; track drink) {
+              <mat-chip>{{ drink }}</mat-chip>
+            }
+          } @else {
+            <mat-chip>None</mat-chip>
+          }
+        </div>
+        <div class="flex-between w-100 my-1">
+          <h3>Activities</h3>
+          @if (selectedEntry['activities'].length > 0) {
+            @for (activity of selectedEntry['activities']; track activity) {
+              <mat-chip>{{ activity }}</mat-chip>
+            }
+          } @else {
+            <mat-chip>None</mat-chip>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</ng-template>
