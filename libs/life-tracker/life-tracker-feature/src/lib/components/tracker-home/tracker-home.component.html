@@ -38,7 +38,7 @@
                       </div>
                     }
                   </div>
-                  <small>{{ entry['date'].toDate() | date : 'shortDate' }}</small>
+                  <small>{{ entry['date'] | date : 'shortDate' }}</small>
                 </button>
               }
             } @else {
@@ -55,78 +55,82 @@
 
 <ng-template #entryDetails>
   @if (selectedEntry) {
-    <div class="p-3 flex-center flex-column">
-      <img class="photo mx-auto" alt="" [src]="'assets/images/emojis/emoji-' + selectedEntry['mood'] + '.png'">
-      <h3 class="text-capitalize text-center">{{ selectedEntry['mood'] }}</h3>
-      <hr class="w-75 mx-auto my-2">
-      <div class="w-100">
-        <p class="w-85 mx-auto">{{ selectedEntry['moodNotes'] }}</p>
-        <div class="flex-around mt-2">
-          @for (slider of selectedEntry['sliders']; track slider) {
-            <div class="flex-center flex-column box">
-              <h2>{{ slider.value }}%</h2>
-              <p>{{ slider.name | truncate: ' ' }}</p>
-            </div>
+    <mat-dialog-content>
+      <div class="flex-center flex-column">
+        <h1>{{ selectedEntry['date'] | date : 'longDate' }}</h1>
+        <img class="photo mx-auto" alt="" [src]="'assets/images/emojis/emoji-' + selectedEntry['mood'] + '.png'">
+        <h3 class="text-capitalize text-center">{{ selectedEntry['mood'] }}</h3>
+        <hr class="w-75 mx-auto my-2">
+        <div class="w-100">
+          <p class="w-85 mx-auto">{{ selectedEntry['moodNotes'] }}</p>
+          <div class="flex-around mt-2">
+            @for (slider of selectedEntry['sliders']; track slider) {
+              <div class="flex-center flex-column box">
+                <h2>{{ slider.value }}%</h2>
+                <p>{{ slider.name | truncate: ' ' }}</p>
+              </div>
+            }
+          </div>
+        </div>
+        <hr class="w-75 mx-auto my-2">
+        <div class="w-100">
+          <shared-ui-list-display
+            [label]="'Breakfast'"
+            [selectedEntry]="selectedEntry['food'].breakfast"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Lunch'"
+            [selectedEntry]="selectedEntry['food'].lunch"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Dinner'"
+            [selectedEntry]="selectedEntry['food'].dinner"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Snacks'"
+            [selectedEntry]="selectedEntry['food'].snacks"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Drinks'"
+            [selectedEntry]="selectedEntry['drinks']"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Activities'"
+            [selectedEntry]="selectedEntry['activities']"
+          ></shared-ui-list-display>
+        </div>
+        <hr class="w-75 mx-auto my-2">
+        <div class="w-100 flex-center flex-column">
+          <h3>I {{ selectedEntry['workedOut'] ? 'worked out' : 'did not work out' }} today</h3>
+          @if (selectedEntry['workedOut']) {
+            <p>My workout was {{ selectedEntry['workoutIntensity'] }}</p>
           }
         </div>
+        <hr class="w-75 mx-auto my-2">
+        <div class="w-100">
+          <shared-ui-list-display
+            [label]="'Urine'"
+            [selectedEntry]="selectedEntry['bathroom'].urine"
+          ></shared-ui-list-display>
+
+          <shared-ui-list-display
+            [label]="'Stool'"
+            [selectedEntry]="selectedEntry['bathroom'].stool"
+          ></shared-ui-list-display>
+        </div>
+        <hr class="w-75 mx-auto my-2">
+        <div class="box w-100 p-2">
+          <p>{{ selectedEntry['journalEntry'] }}</p>
+        </div>
+        <hr class="w-75 mx-auto my-2">
+        <!--// TODO: Set up log entry editing-->
+        <button mat-raised-button color="accent" class="w-85">Edit</button>
       </div>
-      <hr class="w-75 mx-auto my-2">
-      <div class="w-100">
-        <shared-ui-list-display
-          [label]="'Breakfast'"
-          [selectedEntry]="selectedEntry['food'].breakfast"
-        ></shared-ui-list-display>
-        <div class="flex-between w-100 my-1">
-          <h3>Lunch</h3>
-          @if (selectedEntry['food'].lunch.length > 0) {
-            @for (food of selectedEntry['food'].lunch; track food) {
-              <mat-chip>{{ food }}</mat-chip>
-            }
-          } @else {
-            <mat-chip>None</mat-chip>
-          }
-        </div>
-        <div class="flex-between w-100 my-1">
-          <h3>Dinner</h3>
-          @if (selectedEntry['food'].dinner.length > 0) {
-            @for (food of selectedEntry['food'].dinner; track food) {
-              <mat-chip>{{ food }}</mat-chip>
-            }
-          } @else {
-            <mat-chip>None</mat-chip>
-          }
-        </div>
-        <div class="flex-between w-100 my-1">
-          <h3>Snacks</h3>
-          @if (selectedEntry['food'].snacks.length > 0) {
-            @for (food of selectedEntry['food'].snacks; track food) {
-              <mat-chip>{{ food }}</mat-chip>
-            }
-          } @else {
-            <mat-chip>None</mat-chip>
-          }
-        </div>
-        <div class="flex-between w-100 my-1">
-          <h3>Drinks</h3>
-          @if (selectedEntry['drinks'].length > 0) {
-            @for (drink of selectedEntry['drinks']; track drink) {
-              <mat-chip>{{ drink }}</mat-chip>
-            }
-          } @else {
-            <mat-chip>None</mat-chip>
-          }
-        </div>
-        <div class="flex-between w-100 my-1">
-          <h3>Activities</h3>
-          @if (selectedEntry['activities'].length > 0) {
-            @for (activity of selectedEntry['activities']; track activity) {
-              <mat-chip>{{ activity }}</mat-chip>
-            }
-          } @else {
-            <mat-chip>None</mat-chip>
-          }
-        </div>
-      </div>
-    </div>
+    </mat-dialog-content>
   }
 </ng-template>

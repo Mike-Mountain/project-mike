@@ -9,6 +9,6 @@ export const moodOptions = [
   { value: 'Sad', emoji: 'emoji-sad.png' },
   { value: 'Worried', emoji: 'emoji-worried.png' },
   { value: 'Anxious', emoji: 'emoji-anxious.png' },
-  { value: 'Angry', emoji: 'emoji-anger.png' },
+  { value: 'Angry', emoji: 'emoji-angry.png' },
   { value: 'Despair', emoji: 'emoji-despair.png' },
 ];

@@ -8,15 +8,16 @@ import {MatSlider, MatSliderThumb} from "@angular/material/slider";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LengthPipe, SplitPipe, TruncatePipe} from '@project-mike/shared/shared-util';
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {MatDialog} from "@angular/material/dialog";
+import { MatDialog, MatDialogContent } from '@angular/material/dialog';
 import {MatChip} from "@angular/material/chips";
 import {ListDisplayComponent} from "@project-mike/shared/shared-ui";
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
   selector: 'life-tracker-feature-tracker-home',
   standalone: true,
-  imports: [CommonModule, MatCard, MatCardContent, MatSlider, FormsModule, MatSliderThumb, ReactiveFormsModule, SplitPipe, LengthPipe, TruncatePipe, MatChip, ListDisplayComponent],
+  imports: [CommonModule, MatCard, MatCardContent, MatSlider, FormsModule, MatSliderThumb, ReactiveFormsModule, SplitPipe, LengthPipe, TruncatePipe, MatChip, ListDisplayComponent, MatDialogContent, MatButton],
   templateUrl: './tracker-home.component.html',
   styleUrl: './tracker-home.component.scss'
 })

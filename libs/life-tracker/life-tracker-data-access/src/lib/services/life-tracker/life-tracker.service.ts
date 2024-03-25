@@ -1,8 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {addDoc, collection, collectionData, doc, Firestore, setDoc, updateDoc,} from "@angular/fire/firestore";
-import {LogEntry} from "@project-mike/life-tracker/life-tracker-data-access";
+import {LogEntry} from "../../models/life-tracker.model";
 import {AuthService} from "@project-mike/shared/shared-data-access";
-import {of, switchMap} from "rxjs";
+import { map, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,14 @@ export class LifeTrackerService {
   private entries$ = collection(this.firestore, 'logEntry');
 
   public getLogEntries() {
-    return collectionData(this.entries$);
+    return collectionData(this.entries$).pipe(
+      map(entries => {
+        return entries.map(entry => {
+          entry['date'] = entry['date'].toDate();
+          return entry as LogEntry;
+        })
+      })
+    );
   }
 
   public addLogEntry(entry: LogEntry) {
